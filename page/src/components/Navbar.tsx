@@ -46,10 +46,10 @@ export const Navbar = () => {
       >
         <ul className="sm:flex hidden items-center gap-4">
           <li>
-            <a href="#about">About me</a>
+            <a href="#about">Sobre mim</a>
           </li>
           <li>
-            <a href="#portfolio">Portfolio</a>
+            <a href="#projects">Projetos</a>
           </li>
           <li>
             <a href="#blog">Postagens</a>
