@@ -33,7 +33,7 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav className="background border-b-primary-200 border-[1px] border-solid h-20 flex items-center justify-center">
+    <nav className="background border-b-primary-200 dark:border-b-muted border-[1px] border-solid h-20 flex items-center justify-center">
       <motion.div
         className="flex justify-center items-center gap-4 relative flex-1 leading-9"
         initial={{ transform: "translateY(-40px)", opacity: 0 }}
@@ -45,6 +45,16 @@ export const Navbar = () => {
         }}
       >
         <ul className="sm:flex hidden items-center gap-4">
+          {/* <li>
+            <a href="#home">
+              <img
+                className="h-6"
+                src="https://ckzdiversidade.com.br/wp-content/uploads/2023/04/logo-handtalk-1.png"
+                alt="Logo da Hand Talk"
+              />
+            </a>
+          </li> */}
+
           <li>
             <a href="#about">Sobre mim</a>
           </li>
@@ -57,11 +67,15 @@ export const Navbar = () => {
 
           <li className="absolute top-0 right-4">
             <Toggle
-              className="border-[1px] border-solid border-gray-200 dark:border-gray-700 rounded-md"
+              className="border-[1px] border-solid border-primary dark:border-primary rounded-md"
               aria-label="Alterar tema"
               onClick={toggleTheme}
             >
-              {isDarkTheme ? <FiSun /> : <FiMoon />}
+              {isDarkTheme ? (
+                <FiSun className="text-primary" />
+              ) : (
+                <FiMoon className="text-primary" />
+              )}
             </Toggle>
           </li>
         </ul>

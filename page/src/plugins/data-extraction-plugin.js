@@ -1,4 +1,4 @@
-export function extractData(name) {
+export function extractData() {
     const userAgent = navigator.userAgent;
     const platform = navigator.platform;
     const origin = window.location.hostname;
@@ -14,10 +14,9 @@ export function extractData(name) {
 }
 function activatePlugin() {
     console.log("🔶 Data Extraction Plugin is activated! 🚀");
-    const { device, os, origin } = extractData("Data Extraction Plugin");
+    const { device, os, origin } = extractData();
     console.log("Device:", device);
     console.log("OS:", os);
     console.log("Origin:", origin);
-    window.alert(`Device: ${device}\nOS: ${os}\nOrigin: ${origin}`);
 }
 activatePlugin();
