@@ -14,7 +14,7 @@ export const Banner: React.FC = () => {
         />
       </figure>
 
-      <div className="text-center sm:text-left">
+      <div className="text-center md:text-left">
         <hgroup>
           <h1 className="text-lg font-normal mb-2">Olá, eu sou</h1>
           <h2 className="text-primary text-5xl font-medium">Walisson Silva</h2>
