@@ -1,4 +1,6 @@
-import { Extraction } from "src/models/Extraction";
+import { Database, get, getDatabase, ref, set } from "firebase/database";
+import { Extraction, extractionSchema } from "src/models/Extraction";
+import { firebaseApp } from "src/services/FirebaseService";
 
 export type IExtractionsRepository = {
   saveExtraction: (extraction: Extraction) => Promise<void>;
@@ -6,13 +8,44 @@ export type IExtractionsRepository = {
 };
 
 export class ExtractionsRepository implements IExtractionsRepository {
-  private extractions: Extraction[] = [];
+  private database: Database;
 
-  async saveExtraction(extraction: Extraction): Promise<void> {
-    this.extractions.push(extraction);
+  constructor() {
+    this.database = getDatabase(firebaseApp);
   }
 
-  async listExtractions(token: string): Promise<Extraction[]> {
-    return this.extractions.slice(0, 20);
+  async saveExtraction(extraction: Extraction): Promise<void> {
+    try {
+      const currentExtractions = await this.listExtractions(extraction.userId);
+
+      await set(ref(this.database, "extractions/" + extraction.userId), [
+        extraction,
+        ...currentExtractions,
+      ]);
+    } catch (err) {
+      throw Error(
+        `Error on trying to save the extraction for user ${extraction.userId}.`
+      );
+    }
+  }
+
+  async listExtractions(userId: string): Promise<Extraction[]> {
+    const extractionsRef = ref(this.database, "extractions/" + userId);
+
+    const snapshot = await get(extractionsRef);
+
+    try {
+      const data = snapshot.val() ?? [];
+
+      const extractions: Extraction[] = data.map((extraction: Extraction) =>
+        extractionSchema.parse({ ...extraction, userId: userId })
+      );
+
+      return extractions;
+    } catch (err) {
+      throw Error(
+        `Error on trying to load extractions made by the user ${userId}.`
+      );
+    }
   }
 }

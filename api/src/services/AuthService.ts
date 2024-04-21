@@ -19,7 +19,7 @@ export class AuthService {
 
   generateToken(user: User): string {
     if (this.usersToken[user.id]) {
-      jwt.verify(this.usersToken[user.id], this.jwtSecret, (err, decoded) => {
+      jwt.verify(this.usersToken[user.id], this.jwtSecret, (err) => {
         if (!err) {
           return this.usersToken[user.id];
         }

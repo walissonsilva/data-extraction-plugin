@@ -1,7 +1,7 @@
 const env = {
     Api: {
         BaseUrl: "http://localhost:3000",
-        Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjE0NmNiMS0wYjZmLTRjYTgtYTZhNS05YjI1MWUyMDM2MDMiLCJpYXQiOjE3MTM3MTcwOTQsImV4cCI6MTcxMzcyMDY5NH0.U0Qu8YPvx6MkAeIN75u0t3iafddPcdfCbzdslUAtPx0",
+        Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjE0NmNiMS0wYjZmLTRjYTgtYTZhNS05YjI1MWUyMDM2MDMiLCJpYXQiOjE3MTM3MzE1ODksImV4cCI6MTcxMzczNTE4OX0.InrrHDBaqL_BTZ0JOT6mKLhQ0Q-Vx9zU5y5UzjlIvG8",
     },
 };
 

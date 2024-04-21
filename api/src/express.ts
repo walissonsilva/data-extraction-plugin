@@ -6,6 +6,8 @@ import { CollectExtractions } from "./usecases/Extraction/CollectExtraction";
 import { ListExtractions } from "./usecases/Extraction/ListExtractions";
 import { AuthService } from "./services/AuthService";
 import { AuthController } from "./controllers/AuthController";
+import { errorHandler } from "./middlewares/errorsHandler";
+import "express-async-errors";
 
 export const app = express();
 
@@ -36,11 +38,13 @@ const extractionsController = new ExtractionsController(
   authService
 );
 
+app.use(errorHandler);
+
+app.use("/", extractionsController.routes);
+app.use("/auth", authController.routes);
+
 app.get("/", (_, res) =>
   res.status(200).json({
     health: "ok",
   })
 );
-
-app.use("/", extractionsController.routes);
-app.use("/auth", authController.routes);

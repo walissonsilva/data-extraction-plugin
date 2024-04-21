@@ -6,7 +6,10 @@ import {
   CollectExtractions,
   CollectExtractionsInputSchema,
 } from "src/usecases/Extraction/CollectExtraction";
-import { ListExtractions } from "src/usecases/Extraction/ListExtractions";
+import {
+  ListExtractions,
+  ListExtractionsInputSchema,
+} from "src/usecases/Extraction/ListExtractions";
 
 export class ExtractionsController {
   private router: Router;
@@ -21,7 +24,11 @@ export class ExtractionsController {
   }
 
   get routes() {
-    this.router.get("/list", this.list.bind(this));
+    this.router.get(
+      "/list",
+      validateInput(ListExtractionsInputSchema),
+      this.list.bind(this)
+    );
 
     this.router.post(
       "/collect",
@@ -36,8 +43,10 @@ export class ExtractionsController {
   }
 
   async list(req: Request, res: Response) {
-    const token = req.headers.authorization;
-    const extractions = await this.listExtractions.handle(token || "");
+    const extractions = await this.listExtractions.handle({
+      userId: String(req.query.userId),
+    });
+
     return res.status(200).json(extractions);
   }
 
