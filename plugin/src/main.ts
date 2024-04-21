@@ -75,7 +75,7 @@ async function handleExtractDataButtonSubmit(event: MouseEvent): Promise<void> {
 
 async function postExtractedData(extractData: ExtractedData) {
   try {
-    await fetch(`${env.Api.BaseUrl}/collect`, {
+    const response = await fetch(`${env.Api.BaseUrl}/collect`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,12 +84,16 @@ async function postExtractedData(extractData: ExtractedData) {
       body: JSON.stringify(extractData),
     });
 
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
     alert("Os dados extraídos foram enviados com sucesso!");
   } catch (error) {
-    console.error("Failed to send data to the server:", error);
+    console.error(error);
 
     alert(
-      "Falha ao enviar dados para o servidor. Verifique o console para mais detalhes."
+      "⛔ Falha ao enviar dados para o servidor. Verifique o console para mais detalhes."
     );
   }
 }
