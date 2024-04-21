@@ -1,14 +1,10 @@
 import { ProjectCard } from "@/components/ProjectCard";
+import { SectionDivider } from "@/components/SectionDivider";
 
 export const Projects: React.FC = () => {
   return (
     <section id="projects" className="md:mt-24 pb-16">
-      <div className="flex flex-col items-center md:items-start gap-16 mb-8">
-        <hr className="bg-primary h-[2px] w-1/2 md:w-96 opacity-35 block mx-auto" />
-        <h3 className="text-center md:text-left text-primary text-4xl font-medium">
-          Projetos
-        </h3>
-      </div>
+      <SectionDivider title="Projetos" />
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ProjectCard
