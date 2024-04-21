@@ -4,7 +4,7 @@ export const Banner: React.FC = () => {
   return (
     <section
       id="banner"
-      className="flex flex-col md:flex-row-reverse justify-center md:gap-8 gap-12 md:mt-12 h-[calc(100vh-80px)] md:h-auto items-center md:items-start"
+      className="flex flex-col md:flex-row-reverse justify-center md:gap-8 gap-12 md:mt-20 h-[calc(100vh-80px)] md:h-auto items-center md:items-start"
     >
       <figure className="w-full flex justify-center">
         <img
@@ -26,7 +26,15 @@ export const Banner: React.FC = () => {
           do código.
         </p>
 
-        <Button className="mt-6">Currículo</Button>
+        <Button className="mt-6">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://docs.google.com/document/d/1qZW4R0bytrFhdQjs0N6JojhujzNGmV9R0T4tIly0y1w/edit?usp=sharing"
+          >
+            Visualizar Currículo
+          </a>
+        </Button>
       </div>
     </section>
   );

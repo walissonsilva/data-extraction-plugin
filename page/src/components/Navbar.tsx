@@ -33,7 +33,7 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav className="background border-b-primary-200 dark:border-b-muted border-[1px] border-solid h-20 flex items-center justify-center">
+    <nav className="background border-b-primary-200 dark:border-b-muted border-b-[1px] border-solid h-20 flex items-center justify-center">
       <motion.div
         className="flex justify-center items-center gap-4 relative flex-1 leading-9"
         initial={{ transform: "translateY(-40px)", opacity: 0 }}

@@ -1,7 +1,7 @@
 const env = {
     Api: {
         BaseUrl: "http://localhost:3000",
-        Token: "token",
+        Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjE0NmNiMS0wYjZmLTRjYTgtYTZhNS05YjI1MWUyMDM2MDMiLCJpYXQiOjE3MTM3MTcwOTQsImV4cCI6MTcxMzcyMDY5NH0.U0Qu8YPvx6MkAeIN75u0t3iafddPcdfCbzdslUAtPx0",
     },
 };
 
@@ -69,7 +69,7 @@ function handleExtractDataButtonSubmit(event) {
 function postExtractedData(extractData) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield fetch(`${env.Api.BaseUrl}/collect`, {
+            const response = yield fetch(`${env.Api.BaseUrl}/collect`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -77,11 +77,14 @@ function postExtractedData(extractData) {
                 },
                 body: JSON.stringify(extractData),
             });
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
             alert("Os dados extraídos foram enviados com sucesso!");
         }
         catch (error) {
-            console.error("Failed to send data to the server:", error);
-            alert("Falha ao enviar dados para o servidor. Verifique o console para mais detalhes.");
+            console.error(error);
+            alert("⛔ Falha ao enviar dados para o servidor. Verifique o console para mais detalhes.");
         }
     });
 }
