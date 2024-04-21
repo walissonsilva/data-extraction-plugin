@@ -2,8 +2,10 @@ import cors from "cors";
 import express from "express";
 import { ExtractionsController } from "./controllers/ExtractionsController";
 import { ExtractionsRepository } from "./repositories/ExtractionsRepository";
-import { CollectExtractions } from "./usecases/CollectExtraction";
-import { ListExtractions } from "./usecases/ListExtractions";
+import { CollectExtractions } from "./usecases/Extraction/CollectExtraction";
+import { ListExtractions } from "./usecases/Extraction/ListExtractions";
+import { AuthService } from "./services/AuthService";
+import { AuthController } from "./controllers/AuthController";
 
 export const app = express();
 
@@ -19,13 +21,19 @@ app.use(
   })
 );
 
+// AUTHENTICATION
+const authService = new AuthService();
+const authController = new AuthController(authService);
+
+// EXTRACTIONS
 const extractionsRepository = new ExtractionsRepository();
 
 const listExtractions = new ListExtractions(extractionsRepository);
 const collectExtractions = new CollectExtractions(extractionsRepository);
 const extractionsController = new ExtractionsController(
   listExtractions,
-  collectExtractions
+  collectExtractions,
+  authService
 );
 
 app.get("/", (_, res) =>
@@ -35,3 +43,4 @@ app.get("/", (_, res) =>
 );
 
 app.use("/", extractionsController.routes);
+app.use("/auth", authController.routes);

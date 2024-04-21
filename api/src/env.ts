@@ -13,8 +13,8 @@ const envValues: z.infer<typeof envSchema> = {
   Port: "3000",
   Environment: process.env.NODE_ENV || "development",
   Authentication: {
-    Secret: process.env.AUTH_SECRET || "c1a5c26f-3e86-44c5-ba08-18975a0a31e6",
-    Expiration: process.env.AUTH_EXPIRATION || "24h",
+    Secret: process.env.JWT_SECRET || "c1a5c26f-3e86-44c5-ba08-18975a0a31e6",
+    Expiration: process.env.AUTH_EXPIRATION || "1h",
   },
 };
 
