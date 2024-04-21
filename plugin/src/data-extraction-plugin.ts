@@ -1,3 +1,5 @@
+import { env } from "./env";
+
 type ExtractedData = {
   device: string;
   os: string;
@@ -48,22 +50,47 @@ function addButtonToPage(): void {
   document.body.appendChild(button);
 }
 
-function handleExtractDataButtonSubmit(event: MouseEvent): void {
+async function handleExtractDataButtonSubmit(event: MouseEvent): Promise<void> {
   if (event.target instanceof HTMLButtonElement) {
     isSubmitButtonDisabled = true;
     event.target.disabled = true;
     event.target.style.opacity = "0.5";
+    event.target.style.cursor = "not-allowed";
 
     const extractedData = extractData();
 
     if (extractedData) {
       console.log("Data extraction completed:", extractedData);
-      alert("Data extraction completed. Check console for details.");
+
+      await postExtractedData(extractedData);
+      console.log("Data extraction sent to the server.");
 
       isSubmitButtonDisabled = false;
       event.target.disabled = false;
       event.target.style.opacity = "1";
+      event.target.style.cursor = "pointer";
     }
+  }
+}
+
+async function postExtractedData(extractData: ExtractedData) {
+  try {
+    await fetch(`${env.Api.BaseUrl}/collect`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${env.Api.Token}`,
+      },
+      body: JSON.stringify(extractData),
+    });
+
+    alert("Os dados extraídos foram enviados com sucesso!");
+  } catch (error) {
+    console.error("Failed to send data to the server:", error);
+
+    alert(
+      "Falha ao enviar dados para o servidor. Verifique o console para mais detalhes."
+    );
   }
 }
 

@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es6",
     "module": "ESNext",
-    "outDir": "../page/src/plugins",
+    "outDir": "./dist",
+    "moduleResolution": "Node",
     "declaration": false,
     "strict": true,
     "esModuleInterop": true,

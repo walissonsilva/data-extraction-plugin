@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc -w"
+    "build": "tsc && rollup -c"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.12.7",
+    "rollup": "^4.15.0",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "zod": "^3.22.5"
   }
 }
