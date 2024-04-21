@@ -17,7 +17,7 @@ export class AuthController {
       if (user == null) {
         return res
           .status(StatusCodes.UNAUTHORIZED)
-          .json({ message: "Usuário não encontrado" });
+          .json({ message: "User not registered." });
       }
 
       const token = this.authService.generateToken(user);
