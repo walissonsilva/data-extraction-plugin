@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { ProjectCard } from "@/components/ProjectCard";
 
 export const Projects: React.FC = () => {
   return (
@@ -11,62 +11,30 @@ export const Projects: React.FC = () => {
       </div>
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <article className="flex flex-col gap-4 bg-accent p-4 md:p-8 rounded-lg border-border border-[1px] border-solid">
-          <img
-            src="https://github.com/walissonsilva/personal-website/raw/main/public/images/screenshot-web.png"
-            alt="Site Pessoal"
-            className="rounded-lg w-full aspect-video object-cover"
-          />
-          <h4 className="text-primary mt-2 text-xl font-medium">
-            Site Pessoal
-          </h4>
-          <p className="text-muted-foreground line-clamp-3">
-            Esta aplicação consiste no meu site pessoal, desenvolvido com o
-            Next.js, cujo o intuito é apresentar um pouco mais sobre mim, minhas
-            skills, meus projetos, cursos e outros conteúdos que eu tenho o
-            interesse que compartilhar na internet.
-          </p>
+        <ProjectCard
+          thumbnail="https://github.com/walissonsilva/personal-website/raw/main/public/images/screenshot-web.png"
+          title="Site Pessoal"
+          description="Esta aplicação consiste no meu site pessoal, desenvolvido com o
+          Next.js, cujo o intuito é apresentar um pouco mais sobre mim, minhas
+          skills, meus projetos, cursos e outros conteúdos que eu tenho o
+          interesse que compartilhar na internet."
+          externalUrl="https://github.com/walissonsilva/personal-website"
+        />
 
-          <Button asChild>
-            <a
-              href="https://github.com/walissonsilva/personal-website"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver projeto
-            </a>
-          </Button>
-        </article>
-
-        <article className="flex flex-col gap-4 bg-accent p-4 md:p-8 rounded-lg border-border border-[1px] border-solid">
-          <img
-            src="https://github.com/walissonsilva/upload-ai/raw/main/front/public/screenshots/upload-ai-demo.gif"
-            alt="Site Pessoal"
-            className="rounded-lg w-full aspect-video object-cover"
-          />
-          <h4 className="text-primary mt-2 text-xl font-medium">Upload AI</h4>
-          <p className="text-muted-foreground line-clamp-3">
-            Uma aplicação web que visa gerar insigths de títulos e descrição de
-            vídeos a partir de seu conteúdo, utilizando a ChatGPT. O sistema
-            permite que o usuário realize upload de vídeos, os quais serão
-            convertidos para o formato mp3, tendo em vista que apenas o áudio do
-            vídeo será utilizado para que, a partir da sua transcrição, gerada
-            pelo modelo Whisper da OpenAI, a ChatGPT possa utilizá-la como input
-            para gerar títulos com uma bom SEO, além de uma descrição sucinta do
-            vídeo que inclui algumas hashtags com palavras-chave do conteúdo do
-            vídeo.
-          </p>
-
-          <Button asChild>
-            <a
-              href="https://github.com/walissonsilva/upload-ai"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver projeto
-            </a>
-          </Button>
-        </article>
+        <ProjectCard
+          thumbnail="https://github.com/walissonsilva/upload-ai/raw/main/front/public/screenshots/upload-ai-demo.gif"
+          title="Upload AI"
+          description="Uma aplicação web que visa gerar insigths de títulos e descrição de
+          vídeos a partir de seu conteúdo, utilizando a ChatGPT. O sistema
+          permite que o usuário realize upload de vídeos, os quais serão
+          convertidos para o formato mp3, tendo em vista que apenas o áudio do
+          vídeo será utilizado para que, a partir da sua transcrição, gerada
+          pelo modelo Whisper da OpenAI, a ChatGPT possa utilizá-la como input
+          para gerar títulos com uma bom SEO, além de uma descrição sucinta do
+          vídeo que inclui algumas hashtags com palavras-chave do conteúdo do
+          vídeo."
+          externalUrl="https://github.com/walissonsilva/upload-ai"
+        />
       </section>
     </section>
   );
