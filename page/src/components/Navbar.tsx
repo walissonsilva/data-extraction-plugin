@@ -20,6 +20,12 @@ export const Navbar = () => {
 
     applyTheme(isDark);
     localStorage.setItem("darkTheme", String(isDark));
+
+    const themeChangeCount = localStorage.getItem("themeChangeCount") || 0;
+    localStorage.setItem(
+      "themeChangeCount",
+      String(Number(themeChangeCount) + 1)
+    );
   }
 
   useEffect(() => {
@@ -45,16 +51,6 @@ export const Navbar = () => {
         }}
       >
         <ul className="sm:flex hidden items-center gap-4">
-          {/* <li>
-            <a href="#home">
-              <img
-                className="h-6"
-                src="https://ckzdiversidade.com.br/wp-content/uploads/2023/04/logo-handtalk-1.png"
-                alt="Logo da Hand Talk"
-              />
-            </a>
-          </li> */}
-
           <li>
             <a href="#about">Sobre mim</a>
           </li>

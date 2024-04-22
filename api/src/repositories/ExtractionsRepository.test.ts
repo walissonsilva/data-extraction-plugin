@@ -15,6 +15,7 @@ describe("ExtractionsRepository", () => {
           device: "device",
           os: "os",
           origin: "origin",
+          themeChangeCount: 0,
         },
       ];
 
@@ -42,6 +43,7 @@ describe("ExtractionsRepository", () => {
           device: "device",
           os: "os",
           origin: "origin",
+          themeChangeCount: 0,
         },
       ];
 
@@ -71,6 +73,7 @@ describe("ExtractionsRepository", () => {
         device: "device",
         os: "os",
         origin: "origin",
+        themeChangeCount: 0,
       };
 
       fakeDatabaseService.readItem.mockResolvedValueOnce(null);
@@ -93,6 +96,7 @@ describe("ExtractionsRepository", () => {
         device: "device",
         os: "os",
         origin: "origin",
+        themeChangeCount: 2,
       };
 
       const currentExtractions: Extraction[] = [
@@ -101,6 +105,7 @@ describe("ExtractionsRepository", () => {
           device: "old-device",
           os: "old-os",
           origin: "old-origin",
+          themeChangeCount: 0,
         },
       ];
 

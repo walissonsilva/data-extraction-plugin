@@ -11,26 +11,21 @@ export type IAuthService = {
 
 export class AuthService {
   private readonly jwtSecret: string;
-  private usersToken: Record<string, string> = {};
+  private usersToken: Record<string, string>;
 
   constructor() {
     this.jwtSecret = env.Authentication.Secret;
+    this.usersToken = {};
   }
 
   generateToken(user: User): string {
-    if (this.usersToken[user.id]) {
-      jwt.verify(this.usersToken[user.id], this.jwtSecret, (err) => {
-        if (!err) {
-          return this.usersToken[user.id];
-        }
-      });
-    }
-
     const token = jwt.sign({ userId: user.id }, this.jwtSecret, {
       expiresIn: env.Authentication.Expiration,
     });
 
-    return (this.usersToken[user.id] = token);
+    this.usersToken[user.id] = token;
+
+    return token;
   }
 
   verifyToken = (req: Request, res: Response, next: NextFunction) => {

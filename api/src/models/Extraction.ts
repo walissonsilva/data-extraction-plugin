@@ -5,6 +5,7 @@ export const extractionSchema = z.object({
   device: z.string(),
   os: z.string(),
   origin: z.string(),
+  themeChangeCount: z.number(),
 });
 
 export type Extraction = z.infer<typeof extractionSchema>;

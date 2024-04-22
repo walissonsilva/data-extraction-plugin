@@ -1,7 +1,7 @@
 const env = {
     Api: {
         BaseUrl: "http://localhost:3000",
-        Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjE0NmNiMS0wYjZmLTRjYTgtYTZhNS05YjI1MWUyMDM2MDMiLCJpYXQiOjE3MTM3MzE1ODksImV4cCI6MTcxMzczNTE4OX0.InrrHDBaqL_BTZ0JOT6mKLhQ0Q-Vx9zU5y5UzjlIvG8",
+        Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjE0NmNiMS0wYjZmLTRjYTgtYTZhNS05YjI1MWUyMDM2MDMiLCJpYXQiOjE3MTM3NTUwMjcsImV4cCI6MTcxMzc1ODYyN30.GJDHDsD6FXAkN2YwrHsmnEUADawigxloIAt4gCE13BI",
     },
 };
 
@@ -18,6 +18,7 @@ function extractData() {
     const userAgent = navigator.userAgent;
     const platform = navigator.platform;
     const origin = window.location.hostname;
+    const themeChangeCount = window.localStorage.getItem("themeChangeCount") || "0";
     let device = "desktop";
     if (/android/i.test(userAgent)) {
         device = "android";
@@ -26,12 +27,11 @@ function extractData() {
         device = "ios";
     }
     const os = platform;
-    return { device, os, origin };
+    return { device, os, origin, themeChangeCount: Number(themeChangeCount) };
 }
 function addButtonToPage() {
     const button = document.createElement("button");
     button.ariaLabel = "Ativar extração de dados";
-    // Add styles
     button.style.position = "fixed";
     button.style.bottom = "0";
     button.style.right = "0";

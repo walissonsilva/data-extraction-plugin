@@ -4,6 +4,7 @@ type ExtractedData = {
   device: string;
   os: string;
   origin: string;
+  themeChangeCount: number;
 };
 
 let isSubmitButtonDisabled = false;
@@ -12,6 +13,8 @@ export function extractData(): ExtractedData {
   const userAgent = navigator.userAgent;
   const platform = navigator.platform;
   const origin = window.location.hostname;
+  const themeChangeCount =
+    window.localStorage.getItem("themeChangeCount") || "0";
 
   let device = "desktop";
   if (/android/i.test(userAgent)) {
@@ -22,14 +25,13 @@ export function extractData(): ExtractedData {
 
   const os = platform;
 
-  return { device, os, origin };
+  return { device, os, origin, themeChangeCount: Number(themeChangeCount) };
 }
 
 function addButtonToPage(): void {
   const button = document.createElement("button");
   button.ariaLabel = "Ativar extração de dados";
 
-  // Add styles
   button.style.position = "fixed";
   button.style.bottom = "0";
   button.style.right = "0";
