@@ -64,8 +64,16 @@ async function handleExtractDataButtonSubmit(event: MouseEvent): Promise<void> {
     if (extractedData) {
       console.log("Data extraction completed:", extractedData);
 
-      await postExtractedData(extractedData);
-      console.log("Data extraction sent to the server.");
+      try {
+        await postExtractedData(extractedData);
+        console.log("Data extraction sent to the server.");
+        alert("Os dados extraídos foram enviados com sucesso!");
+      } catch (error) {
+        console.error(error);
+        alert(
+          "⛔ Falha ao enviar dados para o servidor. Verifique o console para mais detalhes."
+        );
+      }
 
       isSubmitButtonDisabled = false;
       event.target.disabled = false;
@@ -76,27 +84,17 @@ async function handleExtractDataButtonSubmit(event: MouseEvent): Promise<void> {
 }
 
 async function postExtractedData(extractData: ExtractedData) {
-  try {
-    const response = await fetch(`${env.Api.BaseUrl}/collect`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${env.Api.Token}`,
-      },
-      body: JSON.stringify(extractData),
-    });
+  const response = await fetch(`${env.Api.BaseUrl}/collect`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${env.Api.Token}`,
+    },
+    body: JSON.stringify(extractData),
+  });
 
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-
-    alert("Os dados extraídos foram enviados com sucesso!");
-  } catch (error) {
-    console.error(error);
-
-    alert(
-      "⛔ Falha ao enviar dados para o servidor. Verifique o console para mais detalhes."
-    );
+  if (!response.ok) {
+    throw new Error(response.statusText);
   }
 }
 
