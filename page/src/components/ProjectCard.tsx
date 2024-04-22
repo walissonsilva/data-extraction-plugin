@@ -14,7 +14,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   externalUrl,
 }) => {
   return (
-    <article className="flex flex-col gap-4 bg-accent p-4 md:p-8 rounded-lg border-border border-[1px] border-solid">
+    <article className="flex flex-col gap-4 bg-grey-50 dark:bg-stone-900 p-4 md:p-8 rounded-lg border-border border-[1px] border-solid">
       <header>
         <img
           src={thumbnail}
@@ -23,9 +23,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         />
       </header>
 
-      <main>
-        <h4 className="text-primary mt-2 text-xl font-medium">{title}</h4>
-        <p className="text-muted-foreground line-clamp-3">{description}</p>
+      <main className="mt-2 flex flex-col gap-2">
+        <h4 className="text-orange-700 dark:text-primary text-xl font-medium">
+          {title}
+        </h4>
+        <p className="text-gray-600 dark:text-muted-foreground line-clamp-3">
+          {description}
+        </p>
       </main>
 
       <footer>

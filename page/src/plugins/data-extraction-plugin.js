@@ -41,7 +41,7 @@ function addButtonToPage() {
     button.style.borderTopLeftRadius = "0.5rem";
     button.style.borderTopRightRadius = "0.5rem";
     button.style.backgroundColor = "#eb4c2b";
-    button.style.color = "#ffffff";
+    button.style.color = "#000000";
     button.style.cursor = "pointer";
     button.style.zIndex = "9999";
     button.textContent = "Extrair Dados";
