@@ -21,7 +21,9 @@ export class AuthController {
       }
 
       const token = this.authService.generateToken(user);
-      return res.status(StatusCodes.OK).json({ token });
+      return res
+        .status(StatusCodes.OK)
+        .json({ token, userId: user.id, email: user.email, name: user.name });
     });
 
     return this.router;

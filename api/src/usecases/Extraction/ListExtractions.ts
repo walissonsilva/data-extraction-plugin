@@ -3,7 +3,9 @@ import { IExtractionsRepository } from "src/repositories/ExtractionsRepository";
 import { z } from "zod";
 
 export const ListExtractionsInputSchema = z.object({
-  userId: z.string(),
+  userId: z.string({
+    required_error: "required as a query parameter.",
+  }),
 });
 
 export type ListExtractionsInput = z.infer<typeof ListExtractionsInputSchema>;
