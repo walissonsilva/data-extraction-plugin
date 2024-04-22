@@ -8,6 +8,7 @@ import { AuthService } from "./services/AuthService";
 import { AuthController } from "./controllers/AuthController";
 import { errorHandler } from "./middlewares/errorsHandler";
 import "express-async-errors";
+import { DatabaseService } from "./services/DatabaseService";
 
 export const app = express();
 
@@ -23,15 +24,19 @@ app.use(
   })
 );
 
-// AUTHENTICATION
+// Services
 const authService = new AuthService();
-const authController = new AuthController(authService);
+const databaseService = new DatabaseService();
 
-// EXTRACTIONS
-const extractionsRepository = new ExtractionsRepository();
+// Repositories
+const extractionsRepository = new ExtractionsRepository(databaseService);
 
+// Use cases
 const listExtractions = new ListExtractions(extractionsRepository);
 const collectExtractions = new CollectExtractions(extractionsRepository);
+
+// Controllers
+const authController = new AuthController(authService);
 const extractionsController = new ExtractionsController(
   listExtractions,
   collectExtractions,

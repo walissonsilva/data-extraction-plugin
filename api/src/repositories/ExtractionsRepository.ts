@@ -1,6 +1,5 @@
-import { Database, get, getDatabase, ref, set } from "firebase/database";
 import { Extraction, extractionSchema } from "src/models/Extraction";
-import { firebaseApp } from "src/services/FirebaseService";
+import { IDatabaseService } from "src/services/DatabaseService";
 
 export type IExtractionsRepository = {
   saveExtraction: (extraction: Extraction) => Promise<void>;
@@ -8,17 +7,14 @@ export type IExtractionsRepository = {
 };
 
 export class ExtractionsRepository implements IExtractionsRepository {
-  private database: Database;
-
-  constructor() {
-    this.database = getDatabase(firebaseApp);
-  }
+  constructor(private readonly databaseService: IDatabaseService) {}
 
   async saveExtraction(extraction: Extraction): Promise<void> {
     try {
       const currentExtractions = await this.listExtractions(extraction.userId);
 
-      await set(ref(this.database, "extractions/" + extraction.userId), [
+      const extractionKey = "extractions/" + extraction.userId;
+      await this.databaseService.writeItem<Extraction[]>(extractionKey, [
         extraction,
         ...currentExtractions,
       ]);
@@ -30,16 +26,19 @@ export class ExtractionsRepository implements IExtractionsRepository {
   }
 
   async listExtractions(userId: string): Promise<Extraction[]> {
-    const extractionsRef = ref(this.database, "extractions/" + userId);
-
-    const snapshot = await get(extractionsRef);
-
     try {
-      const data = snapshot.val() ?? [];
-
-      const extractions: Extraction[] = data.map((extraction: Extraction) =>
-        extractionSchema.parse({ ...extraction, userId: userId })
+      const extractionKey = "extractions/" + userId;
+      const data = await this.databaseService.readItem<Extraction[]>(
+        extractionKey
       );
+
+      if (!data) return [];
+
+      const extractions: Extraction[] = data
+        .slice(0, 20)
+        .map((extraction: Extraction) =>
+          extractionSchema.parse({ ...extraction, userId: userId })
+        );
 
       return extractions;
     } catch (err) {
