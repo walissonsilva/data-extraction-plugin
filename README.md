@@ -7,3 +7,5 @@ O projeto foi subdivido em três subprojetos: a página web estática, o plugin 
 1. `page`: projeto para a criação da página estática. Este projeto foi criado utilizando o React.js + Vite + TypeScript.
 2. `api`: projeto para o desenvolvimento da API Rest que fornece endpoints para a comunicação com o Firebase. Este projeto foi desenvolvido utilizando o Node.js + TypeScript + Express.
 3. `plugin`: projeto para o desenvolvimento do plugin a ser integrado na página estática. Este projeto foi desenvolvido utilizando o Node.js + TypeScript.
+
+![Screenshot da página estática desenvolvida.](./static-page.png)
