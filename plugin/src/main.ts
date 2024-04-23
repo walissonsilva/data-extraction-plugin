@@ -67,7 +67,7 @@ async function handleExtractDataButtonSubmit(event: MouseEvent): Promise<void> {
       try {
         await postExtractedData(extractedData);
         console.log("Data extraction sent to the server.");
-        alert("Os dados extraídos foram enviados com sucesso!");
+        alert("✅ Os dados extraídos foram armazenados com sucesso!");
       } catch (error) {
         console.error(error);
         alert(
