@@ -1,11 +1,11 @@
-# Plugin de Extração de Dados
+# Data Extraction Plugin
 
-Este projeto consiste em um plugin de extração de dados de uso de uma página web estática. Os dados coletados são enviados para o `Firebase Realtime Database` através de uma API que se conecta com esse serviço. Os dados coletados podem ser consumidos por meio desta `API`.
+This project consists of a plugin for extracting usage data from a static web page. The collected data is sent to the Firebase Realtime Database through an API that connects with this service. The collected data can be consumed through this API.
 
-O projeto foi subdivido em três subprojetos: a página web estática, o plugin para extração dos dados e a API para comunicação com o Firebase. Sendo assim, temos um monorepo contendo três projetos, os quais são:
+The project was divided into three subprojects: the static web page, the plugin for data extraction and the API for communicating with Firebase. Therefore, we have a monorepo containing three projects, which are:
 
-1. `page`: projeto para a criação da página estática. Este projeto foi criado utilizando o React.js + Vite + TypeScript.
-2. `api`: projeto para o desenvolvimento da API Rest que fornece endpoints para a comunicação com o Firebase. Este projeto foi desenvolvido utilizando o Node.js + TypeScript + Express.
-3. `plugin`: projeto para o desenvolvimento do plugin a ser integrado na página estática. Este projeto foi desenvolvido utilizando o Node.js + TypeScript.
+page: project for creating the static page. This project was created using React.js + Vite + TypeScript.
+api: project for developing the Rest API that provides endpoints for communicating with Firebase. This project was developed using Node.js + TypeScript + Express.
+plugin: project for developing the plugin to be integrated into the static page. This project was developed using Node.js + TypeScript.
 
 ![Screenshot da página estática desenvolvida.](./static-page.png)
